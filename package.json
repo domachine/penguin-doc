@@ -1,0 +1,34 @@
+{
+  "name": "penguin-doc",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "penguin": {
+    "languages": [
+      "en"
+    ],
+    "components": {
+      "Link": "penguin-link"
+    }
+  },
+  "scripts": {
+    "start": "echo 'Hey, please use `npm run serve` for development'",
+    "serve": "penguin serve -v pug",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "rimraf 'static/@(objects|pages)' && rimraf build && penguin pack -v pug",
+    "build": "penguin build",
+    "prepublish": "npm run -s build",
+    "publish": "penguin publish --publish-driver [ penguin.js/git --url git@github.com:domachine/penguin --branch gh-pages ]"
+  },
+  "keywords": [],
+  "author": "Dominik Burgdörfer <db@domachine.de> (https://domachine.de/)",
+  "license": "MIT",
+  "dependencies": {
+    "npm-run-all": "^4.0.1",
+    "penguin-link": "0.0.0",
+    "penguin.js": "^1.0.0-rc.11",
+    "rimraf": "^2.6.1",
+    "timeago.js": "^2.0.5"
+  }
+}

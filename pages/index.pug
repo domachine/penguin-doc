@@ -1,0 +1,108 @@
+doctype html
+html(lang='en')
+  head
+    include /includes/head
+  body.landing-page
+    // FACEBOOK LIKE BUTTON JAVASCRIPT SDK
+    #fb-root
+    script.
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    .page-wrapper
+      // ******Header******
+      header.header.text-center
+        .container
+          .branding
+            h1.logo
+              span.text-bold.icon_documents_alt.icon(aria-hidden='true')
+              span.text-highlight  Penguin
+              span.text-bold .JS
+          // //branding
+          .tagline
+            p
+              | A next-generation CMS which boosts your website's
+              br
+              | development and overall performance.
+        // //container
+      // //header
+      section.cards-section.text-center
+        .container
+          .row
+            .col-md-6.col-md-offset-3
+              .callout-block.callout-danger
+                .icon-holder
+                  i.fa.fa-exclamation-triangle
+                // //icon-holder
+                .content
+                  h4.callout-title Bleeding-edge ahead!
+                  p
+                    | Penguin.js is still in a beta state.
+                    | It's already used in production but things might change rapidly.
+                    | If you want to use it in your company reach out to me and I'll help you
+                    | to get onto safe paths.
+                    br
+                    br
+                    p.text-right
+                      a.btn.btn-lg.btn-default(href='https://domachine.de/en/contact')
+                        i.fa.fa-arrow-right
+                        |  Get support
+                // //content
+          h2.title Documentation
+          .intro
+            p
+              | This is the docs section which provides guides and documents to show you the
+              | penguin way.
+            // //cta-container
+          // //intro
+          #cards-wrapper.cards-wrapper.row
+            .item.item-green.col-md-4.col-sm-6.col-xs-6
+              .item-inner
+                .icon-holder
+                  i.icon.fa.fa-paper-plane
+                // //icon-holder
+                h3.title Quick Start
+                p.intro Learn how to setup your penguin based website and get started.
+                a.link(data-component='Link' data-props='{"href":"/getting-started"}')
+                  span
+              // //item-inner
+            // //item
+            .item.item-pink.item-2.col-md-4.col-sm-6.col-xs-6
+              .item-inner
+                .icon-holder
+                  span.icon.icon_puzzle_alt(aria-hidden='true')
+                // //icon-holder
+                h3.title Components
+                p.intro
+                  | Learn about penguin's component feature and how write
+                  | your own components
+                a.link(data-component='Link' data-props='{"href":"/components"}')
+                  span
+              // //item-inner
+            // //item
+            .item.item-blue.col-md-4.col-sm-6.col-xs-6
+              .item-inner
+                .icon-holder
+                  span.icon.icon_datareport_alt(aria-hidden='true')
+                // //icon-holder
+                h3.title Middleware
+                p.intro
+                  | Learn about penguin's middleware feature and how write
+                  | your own middleware
+                a.link(data-component='Link' data-props='{"href":"/middleware"}')
+                  span
+              // //item-inner
+          // //cards
+        // //container
+      // //cards-section
+    // //page-wrapper
+    include /includes/footer
+    // Main Javascript
+    script(type='text/javascript', src='/static/plugins/jquery-1.12.3.min.js')
+    script(type='text/javascript', src='/static/plugins/bootstrap/js/bootstrap.min.js')
+    script(type='text/javascript', src='/static/plugins/jquery-match-height/jquery.matchHeight-min.js')
+    script(type='text/javascript', src='/static/js/main.js')

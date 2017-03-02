@@ -1,0 +1,50 @@
+mixin doc_page({ color, title, nav = [] })
+  doctype html
+  html(lang='en')
+    head
+      include /includes/head
+      link(rel='stylesheet' href='/static/plugins/prism/prism.css')
+    body(class=`body-${color}`)
+      .page-wrapper
+        header#header.header
+          .container
+            .branding
+              h1.logo
+                a(data-component='Link' data-props='{"href":"/"}')
+                  span.text-bold.icon_documents_alt.icon(aria-hidden='true')
+                  span.text-highlight  Penguin
+                  span.text-bold .JS
+            ol.breadcrumb
+              li
+                a(data-component='Link' data-props='{"href":"/"}') Home
+              li.active= title
+        .doc-wrapper
+          .container
+            #doc-header.doc-header.text-center
+              h1.doc-title #[i.icon.fa.fa-paper-plane] #{title}
+              .meta
+                i.fa.fa-clock-o
+                |
+                | Last updated: #[span(data-component='LastUpdated')]
+            .doc-body
+              .doc-content
+                .content-inner
+                  block
+              .doc-sidebar.hidden-xs
+                nav#doc-nav
+                  ul#doc-menu.nav.doc-menu(data-spy='affix')
+                    each item in nav
+                      li
+                        a.scrollto(href=item.href)= item.title
+                        if item.items
+                          ul.nav.doc-sub-menu
+                            each subitem in item.items
+                              li
+                                a.scrollto(href=subitem.href)= subitem.title
+      include /includes/footer
+      script(type='text/javascript', src='/static/plugins/jquery-1.12.3.min.js')
+      script(type='text/javascript', src='/static/plugins/bootstrap/js/bootstrap.min.js')
+      script(type='text/javascript', src='/static/plugins/prism/prism.js')
+      script(type='text/javascript', src='/static/plugins/jquery-scrollTo/jquery.scrollTo.min.js')
+      script(type='text/javascript', src='/static/plugins/jquery-match-height/jquery.matchHeight-min.js')
+      script(type='text/javascript', src='/static/js/main.js')

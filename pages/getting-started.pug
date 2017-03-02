@@ -1,0 +1,210 @@
+doctype html
+html(lang='en')
+  head
+    include /includes/head
+    link(rel='stylesheet' href='/static/plugins/prism/prism.css')
+  body.body-green
+    .page-wrapper
+      header#header.header
+        .container
+          .branding
+            h1.logo
+              a(data-component='Link' data-props='{"href":"/"}')
+                span.text-bold.icon_documents_alt.icon(aria-hidden='true')
+                span.text-highlight  Penguin
+                span.text-bold .JS
+          ol.breadcrumb
+            li
+              a(data-component='Link' data-props='{"href":"/"}') Home
+            li.active Quick Start
+      .doc-wrapper
+        .container
+          #doc-header.doc-header.text-center
+            h1.doc-title
+              i.icon.fa.fa-paper-plane
+              |
+              | Quick Start
+            .meta
+              i.fa.fa-clock-o
+              |
+              | Last updated: #[span(data-component='LastUpdated')]
+          .doc-body
+            .doc-content
+              .content-inner
+                section#installation-section.doc-section
+                  h2.section-title Installation
+                  .section-block
+                    p
+                      | To get started with penguin.js is easy because
+                      | it embraces the filesystem as its API. So there
+                      | little need to fiddle in config files to just
+                      | get-started out with your new project.
+                  #step1.section-block
+                    h3.block-title 1. Setup your website folder with penguin.js
+                    ul.list
+                      li
+                        .code-block
+                          h6 Create a new folder named like your project
+                          code mkdir myawesomeness
+                      li
+                        .code-block
+                          h6 Create a #[i package.json] with minimal markup
+                          pre
+                            code.language-javascript.
+                              {
+                                "penguin": {
+                                  "languages": ["en"]
+                                },
+                                "scripts": {
+                                  "serve": "penguin serve -v pug",
+                                  "prebuild": "penguin pack -v pug",
+                                  "build": "penguin build"
+                                }
+                              }
+                      li
+                        .code-block
+                          h6 Install penguin.js (make sure, you got at least node v6 installed)
+                          code npm i -S penguin.js
+                  #step2.section-block
+                    h3.block-title 2. Start your development server
+                    .code-block
+                      code npm run serve
+                    p
+                      | Alright now if you got everything right, your
+                      | development server should start and listen on
+                      | port #[code 3000].
+                section#pages-section.doc-section
+                  h2.section-title Pages
+                  #pages-first-page.section-block
+                    h3.block-title Create your first page
+                    p
+                      | If you visit your website on
+                      |
+                      a(href='http://localhost:3000') http://localhost:3000
+                      |
+                      | you'll see a default 404 page.  It's nice to see how
+                      | fast you can start a new website with penguin but it's
+                      | not yet useful. So let's create a first page.
+                    ul.list
+                      li
+                        .code-block
+                          h6 Create pages/ directory
+                          code mkdir -p pages
+                      li
+                        .code-block
+                          h6
+                            | Create a file called #[i index.pug]
+                            | in your pages directory and add some content.
+                          pre
+                            code.language-markup.
+                              doctype html
+                              html
+                                head
+                                  title My first page
+                                body
+                                  p My first content
+                    .callout-block.callout-info
+                      .icon-holder
+                        i.fa.fa-info-circle
+                      // //icon-holder
+                      .content
+                        h4.callout-title A quick note on pug
+                        p
+                          | Penguin.js is designed to be used with many template
+                          | languages. But currently it only supports pug. If you
+                          | don't know pug, read the primer on the
+                          |
+                          a(href='https://pugjs.org/api/getting-started.html' target='_blank') website
+                          | .
+                      // //content
+                    p
+                      | Now you should see your first page on&nbsp;
+                      a(href='http://localhost:3000/') http://localhost:3000/
+                      | .
+                  #pages-make-editable.section-block
+                    h3.block-title Make your page editable
+                    p
+                      | Nice, a static page is useful, but we could
+                      | haved reached to that point easily without
+                      | penguin.  The real power comes in if we make
+                      | the content on our page editable. To
+                      | accomplish this we need so-called
+                      | #[strong components] which will be described in detail
+                      | later. For now we just install two components
+                      | using the following command ...
+                    .code-block
+                      code npm i -S penguin-inplace
+                    | ... and list them in our #[strong package.json].
+                    .code-block
+                      h6 package.json
+                      pre
+                        code.language-javascript.
+                          {
+                            "penguin": {
+                              "languages": ["en"],
+                              "components": {
+                                "Inplace": "penguin-inplace",
+                                "SaveButton": "penguin-save-button"
+                              }
+                            },
+                            "scripts": {
+                              "serve": "penguin serve -v pug",
+                              "prebuild": "penguin pack -v pug",
+                              "build": "penguin build"
+                            }
+                          }
+                    .callout-block.callout-success
+                      .icon-holder
+                        i.fa.fa-thumbs-up
+                      // //icon-holder
+                      .content
+                        h4.callout-title Optimisation coming up!
+                        p
+                          | I'm planning a #[strong penguin install]
+                          | command to install new components having to
+                          | manually touch
+                          | the #[strong package.json]. Stay tuned, I'll roll
+                          | this out in the next weeks.
+                      // //content
+                    p
+                      | Now we can use the&nbsp;
+                      strong inplace component
+                      |  in our page to add editable fields. Add the following
+                      | pug snippet to your page body.
+                    .code-block
+                      code span(data-component='Inplace' data-props='{"field":"my-first-field"}') My first editable content
+                    p
+                      | If you refresh the page, you'll see that the inplace
+                      | component transforms your element into a content-editable
+                      | element. Great, but now we want to be able to persist our
+                      | changes. For that we use the save-button component:
+                    .code-block
+                      code button(data-component='SaveButton') Save
+                    p
+                      | If you now refresh, change your editable field and
+                      | click the button, penguin will store the content.
+                      | Check that by refreshing your page.
+            .doc-sidebar.hidden-xs
+              nav#doc-nav
+                ul#doc-menu.nav.doc-menu(data-spy='affix')
+                  li
+                    a.scrollto(href='#installation-section') Installation
+                    ul.nav.doc-sub-menu
+                      li
+                        a.scrollto(href='#step1') Setup website folder
+                      li
+                        a.scrollto(href='#step2') Start development server
+                  li
+                    a.scrollto(href='#pages-section') Pages
+                    ul.nav.doc-sub-menu
+                      li
+                        a.scrollto(href='#pages-first-page') Create your first page
+                      li
+                        a.scrollto(href='#pages-make-editable') Make your page editable
+    include /includes/footer
+    script(type='text/javascript', src='/static/plugins/jquery-1.12.3.min.js')
+    script(type='text/javascript', src='/static/plugins/bootstrap/js/bootstrap.min.js')
+    script(type='text/javascript', src='/static/plugins/prism/prism.js')
+    script(type='text/javascript', src='/static/plugins/jquery-scrollTo/jquery.scrollTo.min.js')
+    script(type='text/javascript', src='/static/plugins/jquery-match-height/jquery.matchHeight-min.js')
+    script(type='text/javascript', src='/static/js/main.js')

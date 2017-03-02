@@ -1,0 +1,12 @@
+/node_modules/*
+/.penguin/*
+/build/*
+/static/pages/*
+/static/objects/*
+/prettydocs-*
+/static/less/*
+/data/*
+/pages/*.html
+/pages/*.js
+/objects/*.html
+/objects/*.js
