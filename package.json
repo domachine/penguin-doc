@@ -25,9 +25,11 @@
   "author": "Dominik Burgdörfer <db@domachine.de> (https://domachine.de/)",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.15.2",
     "npm-run-all": "^4.0.1",
     "penguin-link": "0.0.0",
     "penguin.js": "^1.0.0-rc.11",
+    "redux": "^3.6.0",
     "rimraf": "^2.6.1",
     "timeago.js": "^2.0.5"
   }
